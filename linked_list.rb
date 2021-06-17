@@ -32,20 +32,28 @@ class LinkedList
 
     self.size += 1
   end
+
+  def prepend(value)
+    node = Node.new(value, head)
+    self.head = node
+    self.size += 1
+  end
+
+  def to_s
+    tmp = head
+    print 'List: '
+    until tmp.nil?
+      print "(#{tmp.value}) -> "
+      tmp = tmp.next_node
+    end
+    puts 'nil'
+  end
 end
 
 l = LinkedList.new
 l.append(1)
-p l.size
-p l.head
-p l.tail
 l.append(2)
-p l.size
-p l.head
-p l.tail
 l.append(3)
-p l.size
-p l.head
-p l.tail
-# puts l.size
-# p l.head
+l.prepend(0)
+
+puts l
