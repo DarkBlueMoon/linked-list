@@ -48,6 +48,29 @@ class LinkedList
     end
     puts 'nil'
   end
+
+  def at(index)
+    tmp = head
+    idx = 0
+
+    until idx == index
+      tmp = tmp.next_node
+      idx += 1
+    end
+
+    tmp
+  end
+
+  def pop
+    tmp = head
+
+    tmp = tmp.next_node until tmp.next_node == tail
+
+    self.tail = tmp
+    ret = tmp.next_node
+    tail.next_node = nil
+    ret
+  end
 end
 
 l = LinkedList.new
@@ -55,5 +78,10 @@ l.append(1)
 l.append(2)
 l.append(3)
 l.prepend(0)
+# p l.at(2)
 
+puts l
+p l.pop
+p l.pop
+# p l.tail
 puts l
