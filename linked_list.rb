@@ -71,6 +71,32 @@ class LinkedList
     tail.next_node = nil
     ret
   end
+
+  def contains?(value)
+    tmp = head
+
+    until tmp.nil?
+      return true if tmp.value == value
+
+      tmp = tmp.next_node
+    end
+
+    false
+  end
+
+  def find(value)
+    tmp = head
+    idx = 0
+
+    until tmp.nil?
+      return idx if tmp.value == value
+
+      idx += 1
+      tmp = tmp.next_node
+    end
+
+    nil
+  end
 end
 
 l = LinkedList.new
@@ -80,8 +106,12 @@ l.append(3)
 l.prepend(0)
 # p l.at(2)
 
-puts l
-p l.pop
-p l.pop
-# p l.tail
-puts l
+p l.find(2)
+p l.find(1)
+p l.find(5)
+
+# puts l
+# p l.pop
+# p l.pop
+# # p l.tail
+# puts l
