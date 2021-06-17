@@ -97,21 +97,43 @@ class LinkedList
 
     nil
   end
+
+  def insert_at(value, index)
+    tmp = head
+    idx = 0
+
+    until idx == index - 1
+      tmp = tmp.next_node
+      idx += 1
+    end
+
+    node = Node.new(value, tmp.next_node)
+    tmp.next_node = node
+    self.size += 1
+  end
+
+  def remove_at(index)
+    tmp = head
+    idx = 0
+
+    until idx == index - 1
+      tmp = tmp.next_node
+      idx += 1
+    end
+
+    remove = tmp.next_node
+    tmp.next_node = remove.next_node
+  end
 end
 
 l = LinkedList.new
 l.append(1)
-l.append(2)
 l.append(3)
+l.append(4)
 l.prepend(0)
-# p l.at(2)
+l.insert_at(2, 2)
+l.insert_at(2.5, 3)
+l.remove_at(3)
 
-p l.find(2)
-p l.find(1)
-p l.find(5)
-
-# puts l
-# p l.pop
-# p l.pop
-# # p l.tail
-# puts l
+puts l
+puts l.size
