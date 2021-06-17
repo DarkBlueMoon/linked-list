@@ -4,8 +4,8 @@
 class Node
   attr_accessor :next_node, :value
 
-  def initialize(data = nil, nxt = nil)
-    @value = data
+  def initialize(value = nil, nxt = nil)
+    @value = value
     @next_node = nxt
   end
 end
@@ -21,13 +21,13 @@ class LinkedList
   end
 
   def append(value)
+    n = Node.new(value)
     if head.nil?
-      self.head = Node.new(value)
+      self.head = n
       self.tail = head
     else
-      node = Node.new(value)
-      tail.next_node = node
-      self.tail = node
+      tail.next_node = n
+      self.tail = n
     end
 
     self.size += 1
@@ -50,6 +50,8 @@ class LinkedList
   end
 
   def at(index)
+    return unless index.between?(0, size)
+
     tmp = head
     idx = 0
 
@@ -99,6 +101,8 @@ class LinkedList
   end
 
   def insert_at(value, index)
+    return unless index.between?(0, size)
+
     tmp = head
     idx = 0
 
@@ -113,6 +117,8 @@ class LinkedList
   end
 
   def remove_at(index)
+    return unless index.between?(0, size)
+
     tmp = head
     idx = 0
 
@@ -129,11 +135,12 @@ end
 l = LinkedList.new
 l.append(1)
 l.append(3)
+l.at(10)
 l.append(4)
-l.prepend(0)
-l.insert_at(2, 2)
-l.insert_at(2.5, 3)
-l.remove_at(3)
+# l.prepend(0)
+# l.insert_at(2, 2)
+# l.insert_at(2.5, 3)
+# l.remove_at(3)
 
 puts l
-puts l.size
+# puts l.size
